@@ -8,7 +8,7 @@ const baseConfig = require('./webpack.base.config');
 module.exports = merge.smart(baseConfig, {
     target: 'electron-renderer',
     entry: {
-        app: ['@babel/polyfill','./src/renderer/app.tsx']
+        app: ['@babel/polyfill','./src/app.tsx']
     },
     module: {
         rules: [
@@ -62,7 +62,7 @@ module.exports = merge.smart(baseConfig, {
     },
     plugins: [
         new ForkTsCheckerWebpackPlugin({
-            reportFiles: ['src/renderer/**/*']
+            reportFiles: ['src/**/*']
         }),
         new webpack.NamedModulesPlugin(),
         new HtmlWebpackPlugin(),
