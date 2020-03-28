@@ -84,6 +84,7 @@
     "@types/d3": "^5.7.2",
     "@types/electron-devtools-installer": "^2.2.0",
     "@types/jest": "^24.0.13",
+    "@types/lodash": "^4.14.149",
     "@types/react": "^16.8.18",
     "@types/react-dom": "^16.8.4",
     "@types/react-redux": "^7.0.9",
@@ -131,13 +132,14 @@
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "d3": "latest",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
     "redux": "^4.0.5",
-    "ts-node": "^8.6.2",
-    "d3": "latest"
+    "ts-node": "^8.6.2"
   }
 }

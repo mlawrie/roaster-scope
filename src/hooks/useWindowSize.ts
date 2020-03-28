@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import * as lodash from 'lodash';
 
 export const useWindowSize = () => {
     const isClient = typeof window === 'object';
@@ -17,9 +18,9 @@ export const useWindowSize = () => {
             return undefined;
         }
 
-        function handleResize() {
+        const handleResize = lodash.debounce(() => {
             setWindowSize(getSize());
-        }
+        }, 100);
 
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
