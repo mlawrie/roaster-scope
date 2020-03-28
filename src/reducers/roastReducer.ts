@@ -1,7 +1,6 @@
-import { Reducer } from 'redux';
-
-import { DECREMENT, INCREMENT, CounterAction } from '../actions/counterActions';
+import {Action, Reducer} from 'redux'
 import { MeasureConfig } from './configReducer';
+import {actionCreator, isAction} from '../store/types'
 
 export interface RoastEvent {
     name:
@@ -26,6 +25,7 @@ export interface RoastMeasurement {
 }
 
 export interface RoastState {
+    readonly title: string;
     readonly startTime: Date;
     readonly events: RoastEvent[];
     readonly measures: {
@@ -34,6 +34,7 @@ export interface RoastState {
 }
 
 const defaultState: RoastState = {
+    title: '',
     startTime: new Date(),
     events: [
         { name: 'Charge', time: 30 },
@@ -63,6 +64,11 @@ const defaultState: RoastState = {
     }
 };
 
-export const roastReducer: Reducer<RoastState> = (state = defaultState, action: CounterAction) => {
+export const roastReducer: Reducer<RoastState> = (state = defaultState, action: Action<any>) => {
+    if (isAction(action, updateRoastTitle)) {
+        return {...state, title: action.payload.title}
+    }
     return state;
 };
+
+export const updateRoastTitle = actionCreator<{title: string}>('UPDATE_ROAST_TITLE')
