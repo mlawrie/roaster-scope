@@ -8,10 +8,6 @@ import { useWindowSize } from '../hooks/useWindowSize';
 import { useInitialRerender } from '../hooks/useInitialRerender';
 import { drawRoastGraphIntoElement } from './drawRoastGraphIntoElement';
 
-const styles = {
-    container: {}
-};
-
 interface Props {
     readonly roast: RoastState;
     readonly config: ConfigState;
@@ -19,12 +15,12 @@ interface Props {
 
 const mapStateToProps = (state: RootState) => ({ roast: state.roast, config: state.config });
 
-const graphMargin = 50;
+const graphMargin = 20;
 
 export const RoastGraph = connect(mapStateToProps)((props: Props) => {
     const size = useWindowSize();
     const svgRef = useRef<HTMLElement>(null);
-    const graphWidth = size.width || 0;
+    const graphWidth = size.width - 40 || 0;
     const graphHeight = (size.height || 0) - 200;
 
     useInitialRerender();
@@ -40,7 +36,7 @@ export const RoastGraph = connect(mapStateToProps)((props: Props) => {
     });
 
     return (
-        <div style={styles.container}>
+        <div style={{ margin: '20px' }}>
             <svg height={graphHeight} width={graphWidth} ref={svgRef as any} />
         </div>
     );

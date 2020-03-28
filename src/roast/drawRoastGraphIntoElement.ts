@@ -38,15 +38,15 @@ const getDomains = (roast: RoastState, config: ConfigState, dimensions: GraphDim
         temperatureScale: d3
             .scaleLinear()
             .domain(temperatureDomain)
-            .range([graphHeight - graphMargin, graphMargin]),
+            .range([graphHeight - 30, 10]),
         timeScale: d3
             .scaleLinear()
             .domain(timeDomain)
-            .range([graphMargin, graphWidth - graphMargin]),
+            .range([40, graphWidth - 40]),
         rateOfRiseScale: d3
             .scaleLinear()
             .domain(rateOfRiseDomain)
-            .range([graphHeight - graphMargin, graphMargin])
+            .range([graphHeight - 30, 10])
     };
 };
 
@@ -66,7 +66,7 @@ const drawAxes = (svg: D3Svg, dimensions: GraphDimensions, xScale: Scale, yScale
 
     svg.append('g')
         .attr('class', 'axis')
-        .attr('transform', `translate(${dimensions.graphMargin - 10},0)`)
+        .attr('transform', `translate(${30},0)`)
         .call(yAxis)
         .call(g => g.select('.domain').remove())
         .call(g =>
@@ -74,16 +74,13 @@ const drawAxes = (svg: D3Svg, dimensions: GraphDimensions, xScale: Scale, yScale
                 .selectAll('.tick line')
                 .attr('stroke-opacity', 0.3)
                 .attr('x1', '0')
-                .attr('x2', `${dimensions.graphWidth - dimensions.graphMargin - 30}`)
+                .attr('x2', `${dimensions.graphWidth}`)
                 .attr('stroke-dasharray', '2,2')
         );
 
     svg.append('g')
         .attr('class', 'axis')
-        .attr(
-            'transform',
-            `translate(${0},${dimensions.graphHeight - dimensions.graphMargin + 10})`
-        )
+        .attr('transform', `translate(${0},${dimensions.graphHeight - 20})`)
         .call(xAxis)
         .call(g => g.select('.domain').remove())
         .call(g =>
@@ -91,7 +88,7 @@ const drawAxes = (svg: D3Svg, dimensions: GraphDimensions, xScale: Scale, yScale
                 .selectAll('.tick line')
                 .attr('stroke-opacity', 0.3)
                 .attr('y1', '0')
-                .attr('y2', `-${dimensions.graphHeight - dimensions.graphMargin - 30}`)
+                .attr('y2', `-${dimensions.graphHeight - 30}`)
                 .attr('stroke-dasharray', '2,2')
         );
 };
